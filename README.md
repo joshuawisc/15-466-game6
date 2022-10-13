@@ -14,7 +14,7 @@ How To Play:
 
 WASD to move the player, score more than the opponent.
 
-Sources: 
+Sources:
 
 This game was built with [NEST](NEST.md).
 
