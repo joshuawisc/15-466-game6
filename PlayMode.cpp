@@ -153,7 +153,7 @@ void PlayMode::draw(glm::uvec2 const &drawable_size) {
 		draw_text(glm::vec2(Game::ArenaMin.x - 0.5, Game::ArenaMin.y), std::to_string(game.score1) ,0.09f);
 		draw_text(glm::vec2(Game::ArenaMin.x - 0.5, Game::ArenaMax.y - 0.1), std::to_string(game.score2),0.09f);
 
-		float goalLength = (Game::ArenaMax.x - Game::ArenaMin.x) * 0.20;
+		float goalLength = (Game::ArenaMax.x - Game::ArenaMin.x) * 0.2f;
 		float goalHeight = 0.05f;
 		glm::u8vec4 goalColor = glm::u8vec4(255, 90, 95, 255);
 
