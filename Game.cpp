@@ -95,7 +95,7 @@ Player *Game::spawn_player(std::string name) {
 	if (name == "Default") {
 		player.name = "Player " + std::to_string(next_player_number++);
 		player.position.x = (ArenaMax.x + ArenaMin.x) / 2;
-		player.position.y = ArenaMin.y + 0.1;
+		player.position.y = ArenaMin.y + 0.1f;
 		player.color.r = 200;
 		player.color.g = 29;
 		player.color.b = 37;
@@ -107,7 +107,7 @@ Player *Game::spawn_player(std::string name) {
 			player.color.g = 126;
 			player.color.b = 139;
 			player.color /= 255;
-			player.position.y = ArenaMax.y - 0.1;
+			player.position.y = ArenaMax.y - 0.1f;
 		} 
 
 	} else {
@@ -214,7 +214,7 @@ void Game::update(float elapsed) {
 
 		auto isGoal = [&](float x) {
 			float mid = (ArenaMax.x + ArenaMin.x)/2;
-			float goalLength = (ArenaMax.x - ArenaMin.x) * .20;
+			float goalLength = (ArenaMax.x - ArenaMin.x) * .2f;
 
 			if (x >= mid - goalLength && x <= mid + goalLength)
 				return true;
