@@ -48,7 +48,7 @@ struct Player {
 
 struct Game {
 	std::list< Player > players; //(using list so they can have stable addresses)
-	Player *spawn_player(); //add player the end of the players list (may also, e.g., play some spawn anim)
+	Player *spawn_player(std::string name = "Default"); //add player the end of the players list (may also, e.g., play some spawn anim)
 	void remove_player(Player *); //remove player from game (may also, e.g., play some despawn anim)
 
 	std::mt19937 mt; //used for spawning players
@@ -70,7 +70,12 @@ struct Game {
 	//player constants:
 	inline static constexpr float PlayerRadius = 0.06f;
 	inline static constexpr float PlayerSpeed = 2.0f;
-	inline static constexpr float PlayerAccelHalflife = 0.25f;
+	inline static constexpr float PlayerAccelHalflife = 0.05f;
+	inline static constexpr float BallSpeed = 10.0f;
+	inline static constexpr float BallAccelHalflife = 0.95f;
+
+	uint8_t score1 = 0;
+	uint8_t score2 = 0;
 	
 
 	//---- communication helpers ----

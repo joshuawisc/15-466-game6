@@ -1,10 +1,10 @@
-# (TODO: your game's title)
+# Land Hockey
 
-Author: (TODO: your name)
+Author: Joshua Mathews
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: Multiplayer game where (ideally) two players try to get the ball into the other player's goal and score the most points
 
-Networking: (TODO: How does your game implement client/server multiplayer? What messages are transmitted? Where in the code?)
+Networking: The main code is in Game.cpp. The client sends the button prompts to the server. The server moves the players and the ball, calculates collisions, checks for goals and updates the score. The client then receives updated ball and player positions as well as the updated score.
 
 Screen Shot:
 
@@ -12,9 +12,9 @@ Screen Shot:
 
 How To Play:
 
-(TODO: describe the controls and (if needed) goals/strategy.)
+WASD to move the player, score more than the opponent.
 
-Sources: (TODO: list a source URL for any assets you did not create yourself. Make sure you have a license for the asset.)
+Sources: 
 
 This game was built with [NEST](NEST.md).
 

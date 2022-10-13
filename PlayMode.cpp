@@ -112,7 +112,9 @@ void PlayMode::draw(glm::uvec2 const &drawable_size) {
 		return ret;
 	}();
 
+	// glClearColor(191.f/255, 215.f/255, 234.f/255, 1.0f);
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
 	glClear(GL_COLOR_BUFFER_BIT);
 	glDisable(GL_DEPTH_TEST);
 	
@@ -147,10 +149,32 @@ void PlayMode::draw(glm::uvec2 const &drawable_size) {
 				glm::u8vec4(0xff, 0xff, 0xff, 0x00));
 		};
 
-		lines.draw(glm::vec3(Game::ArenaMin.x, Game::ArenaMin.y, 0.0f), glm::vec3(Game::ArenaMax.x, Game::ArenaMin.y, 0.0f), glm::u8vec4(0xff, 0x00, 0xff, 0xff));
-		lines.draw(glm::vec3(Game::ArenaMin.x, Game::ArenaMax.y, 0.0f), glm::vec3(Game::ArenaMax.x, Game::ArenaMax.y, 0.0f), glm::u8vec4(0xff, 0x00, 0xff, 0xff));
-		lines.draw(glm::vec3(Game::ArenaMin.x, Game::ArenaMin.y, 0.0f), glm::vec3(Game::ArenaMin.x, Game::ArenaMax.y, 0.0f), glm::u8vec4(0xff, 0x00, 0xff, 0xff));
-		lines.draw(glm::vec3(Game::ArenaMax.x, Game::ArenaMin.y, 0.0f), glm::vec3(Game::ArenaMax.x, Game::ArenaMax.y, 0.0f), glm::u8vec4(0xff, 0x00, 0xff, 0xff));
+		// Draw scores
+		draw_text(glm::vec2(Game::ArenaMin.x - 0.5, Game::ArenaMin.y), std::to_string(game.score1) ,0.09f);
+		draw_text(glm::vec2(Game::ArenaMin.x - 0.5, Game::ArenaMax.y - 0.1), std::to_string(game.score2),0.09f);
+
+		float goalLength = (Game::ArenaMax.x - Game::ArenaMin.x) * 0.20;
+		float goalHeight = 0.05f;
+		glm::u8vec4 goalColor = glm::u8vec4(255, 90, 95, 255);
+
+
+		lines.draw(glm::vec3(Game::ArenaMin.x, Game::ArenaMin.y, 0.0f), glm::vec3(Game::ArenaMax.x, Game::ArenaMin.y, 0.0f), goalColor);
+		lines.draw(glm::vec3(Game::ArenaMin.x, Game::ArenaMax.y, 0.0f), glm::vec3(Game::ArenaMax.x, Game::ArenaMax.y, 0.0f), goalColor);
+		lines.draw(glm::vec3(Game::ArenaMin.x, Game::ArenaMin.y, 0.0f), glm::vec3(Game::ArenaMin.x, Game::ArenaMax.y, 0.0f), goalColor);
+		lines.draw(glm::vec3(Game::ArenaMax.x, Game::ArenaMin.y, 0.0f), glm::vec3(Game::ArenaMax.x, Game::ArenaMax.y, 0.0f), goalColor);
+
+		//Draw goal areas
+
+
+		lines.draw(glm::vec3(-goalLength, Game::ArenaMin.y+goalHeight, 0.0f), glm::vec3(goalLength, Game::ArenaMin.y+goalHeight, 0.0f), goalColor);
+		lines.draw(glm::vec3(-goalLength, Game::ArenaMin.y, 0.0f), glm::vec3(-goalLength, Game::ArenaMin.y+goalHeight, 0.0f), goalColor);
+		lines.draw(glm::vec3(goalLength, Game::ArenaMin.y, 0.0f), glm::vec3(goalLength, Game::ArenaMin.y+goalHeight, 0.0f), goalColor);
+
+		lines.draw(glm::vec3(-goalLength, Game::ArenaMax.y-goalHeight, 0.0f), glm::vec3(goalLength, Game::ArenaMax.y-goalHeight, 0.0f), goalColor);
+		lines.draw(glm::vec3(-goalLength, Game::ArenaMax.y, 0.0f), glm::vec3(-goalLength, Game::ArenaMax.y-goalHeight, 0.0f), goalColor);
+		lines.draw(glm::vec3(goalLength, Game::ArenaMax.y, 0.0f), glm::vec3(goalLength, Game::ArenaMax.y-goalHeight, 0.0f), goalColor);
+
+
 
 		for (auto const &player : game.players) {
 			glm::u8vec4 col = glm::u8vec4(player.color.x*255, player.color.y*255, player.color.z*255, 0xff);
